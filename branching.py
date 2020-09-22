@@ -15,17 +15,19 @@ How is it going bot?
 # and make a comment depending on your response and its analysis
 
 # Ask user how it's going & store the reply
-userState = input("How's it goin'?: ")
+userState = input("How's it going?: ")
 
 # If statement format
 #   if bool_expr:
-    # execute
-    # previous bool_expr has to be false
+# execute
+# previous bool_expr has to be false
 #   elif bool_expr:
-    # execute
+# execute
 # If the user's state is Good/good/great, then reply with "Good!".
 if userState == "Good" or userState == "good" or userState == "great":
-    print("Good!")
+    good_thing = input("Good! Why, what went well?: ")
+    print(good_thing.strip(".!? ") + "? That's great!")
+
 # If the user says bad, then reply with "Oh, no!"
 elif userState.capitalize() == "Bad":
     print("Oh, no!")
