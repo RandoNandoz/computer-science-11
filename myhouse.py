@@ -8,40 +8,40 @@ Magic numbers in code hell™
 @author: Randy Zhu
 """
 # The walls of the house
-myWall = "|" + " " * 10   + " " * 5 + " " * 10 + "|" + "\n"
+MY_WALL = "|" + " " * 10   + " " * 5 + " " * 10 + "|" + "\n"
 
 # The second type of wall, containing window
-mySecondWall = "|" + " " * 10 + "\'"  + " " * 5 + "\'" + " " * 8 + "|" + "\n"
+MY_SECOND_WALL = "|" + " " * 10 + "\'"  + " " * 5 + "\'" + " " * 8 + "|" + "\n"
 
 # Roof
 print(" " * 7 + "\'" * 13)
 # Roof
-print(" " * 7 + "\'" + " " * (int(len(myWall)) - 17) + "\'")
+print(" " * 7 + "\'" + " " * (int(len(MY_WALL)) - 17) + "\'")
 # Roof
-print(" " * 6 + "\'" + " " * (int(len(myWall)) - 15) + "\'")
-print(" " * 5 + "\'" + " " * (int(len(myWall)) - 13) + "\'")
+print(" " * 6 + "\'" + " " * (int(len(MY_WALL)) - 15) + "\'")
+print(" " * 5 + "\'" + " " * (int(len(MY_WALL)) - 13) + "\'")
 # Roof
-print(" " * 4 + "\'" + " " * (int(len(myWall)) - 11) + "\'")
+print(" " * 4 + "\'" + " " * (int(len(MY_WALL)) - 11) + "\'")
 # Roof
-print(" " * 3 + "\'" + " " * (int(len(myWall)) - 9) + "\'")
+print(" " * 3 + "\'" + " " * (int(len(MY_WALL)) - 9) + "\'")
 # Roof
-print(" " * 2 + "\'" + " " * (int(len(myWall)) - 7) + "\'")
+print(" " * 2 + "\'" + " " * (int(len(MY_WALL)) - 7) + "\'")
 # Roof
-print(" " + "\'" + " " * (int(len(myWall)) - 5) + "\'")
+print(" " + "\'" + " " * (int(len(MY_WALL)) - 5) + "\'")
 # Wall
-print("\'" + " " * (int(len(myWall) - 3)) + "\'")
+print("\'" + " " * (int(len(MY_WALL) - 3)) + "\'")
 # Wall
-print("\'" * ((int(len(myWall)) - 1)))
+print("\'" * ((int(len(MY_WALL)) - 1)))
 # Wall
-print(myWall * 3, end="")
+print(MY_WALL * 3, end="")
 # Window
 print("|" + " " * 10 + "\'" * 7 + " " * 5 + " " * 3 +"|")
 # Window
-print(mySecondWall * 3, end="")
+print(MY_SECOND_WALL * 3, end="")
 # Window
 print("|" + " " * 10 + "\'" * 7 + " " * 5 + " " * 3 +"|")
 # Window
-print(myWall, end="")
+print(MY_WALL, end="")
 # Door
 print("|" + " " * 10 + "\'" * 7 + " " * 5 + " " * 3 +"|")
 # Door
@@ -53,4 +53,4 @@ print("|" + " " * 10 + "\'" + " " * 3 + "\u1F91" + " " + "\'" + " " * 8 + "|")
 # Door
 print("|" + " " * 10 + "\'" + " " * 5 + "\'" + " " * 8 + "|")
 # Floor
-print("\'" * ((int(len(myWall)) - 1)))
+print("\'" * ((int(len(MY_WALL)) - 1)))

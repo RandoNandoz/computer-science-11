@@ -5,15 +5,15 @@ Created on Mon Sep 14 10:04:37 2020
 @author: Randy Zhu
 """
 
-name = "Bob"
-age = 15
-average = (12 + age + 13) / 3
-isHappy = True
+NAME = "Bob"
+AGE = 15
+AVERAGE = (12 + AGE + 13) / 3
+IS_HAPPY = True
 
-print(name, type(name)) # expected output: <class 'str'>
-print(age, type(age))
-print(average, type(average))
-print(isHappy, type(isHappy))
+print(NAME, type(NAME)) # expected output: <class 'str'>
+print(AGE, type(AGE))
+print(AVERAGE, type(AVERAGE))
+print(IS_HAPPY, type(IS_HAPPY))
 
 print("*" * 20)
 

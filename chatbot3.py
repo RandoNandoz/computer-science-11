@@ -30,7 +30,7 @@ listCommentsAboutFood = [
 # Prints a random choice from the array.
 print(choice(listCommentsAboutFood))
 
-# Get's the user's favourite colour, then stores it in a variable
+# Get's the user's favourite colour, then stores it in a variable.
 userFavouriteColour = input("What's your favourite color?: ")
 
 # A list of comment's about their favourite colour.
@@ -62,7 +62,7 @@ userFavouriteWord = input("What's your favourite word, or phrase?: ")
 # Make a list of comments about the phrase.
 listCommentsAboutPhrase = [
     f"""
-    Wow! We have so much in common human! You like {userFavouriteFood}, 
+    Wow! We have so much in common human! You like {userFavouriteFood},
     {userFavouriteColour}, and {userFavouriteWord}?! Me too.
     """,
     f"""

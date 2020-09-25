@@ -15,15 +15,15 @@ comments = [
     f"Hmm, {favourite_book} is a strange taste",
     f"Blah blah blah, {favourite_book}",
     f"Whoa there. {favourite_book} is an odd choice",
-    f"Hahahaa!"
-    ]
+    "Hahahaa!"
+]
 # Using the python random library, we use the choice function imported above
 # to pick a random indice of the array.
 random_comment = choice(comments)
 
 # crash and burn!
 # prints(")
-       
-# Using the random string from the array of comments, 
+
+# Using the random string from the array of comments,
 # we print it as a reply to the user, along with the user's favourite book.
 print(random_comment)
