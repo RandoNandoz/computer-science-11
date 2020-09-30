@@ -8,7 +8,7 @@ Purpose: Mind reader bot.
 print("Welcome to the Mind Reader!")
 
 words = ["cat", "dog", "apple"]
-score = 0
+SCORE = 0
 
 for word in words:
     print("Player 1, enter 3 words you think of when I say " + word + ".")
@@ -25,6 +25,6 @@ for word in words:
 
     if guess in [first, second, third]:
         print("You've got it!")
-        score += 1
+        SCORE += 1
 
-print("You got: " + str(score) + " right.")
+print("You got: " + str(SCORE) + " right.")
