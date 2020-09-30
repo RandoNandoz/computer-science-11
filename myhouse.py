@@ -8,10 +8,10 @@ Magic numbers in code hell™
 @author: Randy Zhu
 """
 # The walls of the house
-MY_WALL = "|" + " " * 10   + " " * 5 + " " * 10 + "|" + "\n"
+MY_WALL = "|" + " " * 10 + " " * 5 + " " * 10 + "|" + "\n"
 
 # The second type of wall, containing window
-MY_SECOND_WALL = "|" + " " * 10 + "\'"  + " " * 5 + "\'" + " " * 8 + "|" + "\n"
+MY_SECOND_WALL = "|" + " " * 10 + "\'" + " " * 5 + "\'" + " " * 8 + "|" + "\n"
 
 # Roof
 print(" " * 7 + "\'" * 13)
@@ -35,15 +35,15 @@ print("\'" * ((int(len(MY_WALL)) - 1)))
 # Wall
 print(MY_WALL * 3, end="")
 # Window
-print("|" + " " * 10 + "\'" * 7 + " " * 5 + " " * 3 +"|")
+print("|" + " " * 10 + "\'" * 7 + " " * 5 + " " * 3 + "|")
 # Window
 print(MY_SECOND_WALL * 3, end="")
 # Window
-print("|" + " " * 10 + "\'" * 7 + " " * 5 + " " * 3 +"|")
+print("|" + " " * 10 + "\'" * 7 + " " * 5 + " " * 3 + "|")
 # Window
 print(MY_WALL, end="")
 # Door
-print("|" + " " * 10 + "\'" * 7 + " " * 5 + " " * 3 +"|")
+print("|" + " " * 10 + "\'" * 7 + " " * 5 + " " * 3 + "|")
 # Door
 print("|" + " " * 10 + "\'" + " " * 5 + "\'" + " " * 8 + "|")
 # Door

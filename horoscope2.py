@@ -94,7 +94,8 @@ pig = [
 
 # Asks the user what year they were born in.
 user_year = input("In what year were you born?: ").strip(" ,!.?")
-# Because input() returns string, we need to cast the user_year variable to an int.
+# Because input() returns string, we need to cast the user_year variable
+# to an int.
 user_year = int(user_year)
 # Checks if the user's year are in the arrays.
 if user_year in rat:

@@ -37,8 +37,7 @@ NEGATIVE_RESPONSES = [
 NEUTRAL_RESPONSES = [
     f"Interesting choice {user_name}, as a machine, I have never had {user_snack}.",
     f"Honesty, {user_name}, as a machine, I do not see colours. I only see ones and zeros.",
-    f"Decent choice of colour {user_name}."
-]
+    f"Decent choice of colour {user_name}."]
 
 # If the user is not under the age of ten, give them any response
 if user_state == "Good" or user_state == "Great" or user_state == "Excellent" and user_age > 10:
@@ -49,7 +48,8 @@ if user_state == "Good" or user_state == "Great" or user_state == "Excellent" an
         print(choice(NEUTRAL_RESPONSES))
     elif three_sided_die == 2:
         print(choice(NEGATIVE_RESPONSES))
-# If they're choice of colour doesn't match the bot's, give them a non-positive reply.
+# If they're choice of colour doesn't match the bot's, give them a
+# non-positive reply.
 elif (user_state == "Good" or user_state == "Great"
       or user_state == "Excellent" and user_colour
       not in BASIC_COLOURS and user_age > 10):
@@ -67,6 +67,7 @@ elif user_state == "Alright" or user_state == "Decent" and user_age > 10:
 elif user_state == "Bad" or user_state == "Awful" or user_state == "Not Good" and user_age > 10:
     print(choice(POSITIVE_RESPONSES))
 
-# Alas, if they're a child, give them a positive response. Don't bully children.
+# Alas, if they're a child, give them a positive response. Don't bully
+# children.
 elif user_age < 10:
     print(choice(POSITIVE_RESPONSES))

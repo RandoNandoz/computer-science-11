@@ -10,7 +10,7 @@ AGE = 15
 AVERAGE = (12 + AGE + 13) / 3
 IS_HAPPY = True
 
-print(NAME, type(NAME)) # expected output: <class 'str'>
+print(NAME, type(NAME))  # expected output: <class 'str'>
 print(AGE, type(AGE))
 print(AVERAGE, type(AVERAGE))
 print(IS_HAPPY, type(IS_HAPPY))

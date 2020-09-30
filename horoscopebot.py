@@ -7,7 +7,8 @@ Bot which asks the user what year they were born, and tells them their horoscope
 
 # Asks the user what year they were born in.
 user_year = input("In what year were you born?: ")
-# Because input() returns string, we need to cast the user_year variable to an int.
+# Because input() returns string, we need to cast the user_year variable
+# to an int.
 user_year = int(user_year)
 
 # Checks whether the user is born in a certain year of the zodiacs.

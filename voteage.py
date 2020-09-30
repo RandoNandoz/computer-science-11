@@ -7,7 +7,8 @@ Purpose: Checks whether the user is of voting age.
 age = int(input("How old are you?: "))
 # Check if the user's age is negative.
 if age < 0:
-    # If it is, tell them that it cannot be negative, because that violates logic.
+    # If it is, tell them that it cannot be negative, because that violates
+    # logic.
     print("Your age cannot be negative.")
 # If the user's age is equal, or greater than 18:
 elif age >= 18:

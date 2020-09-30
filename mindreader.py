@@ -19,8 +19,9 @@ for word in words:
     print("\n" * 1000)
 
     guess = input(
-        "Player 2, what is one word you think Player 1 associates with " + word + "?: "
-    ).lower().strip("!.? ")
+        "Player 2, what is one word you think Player 1 associates with " +
+        word +
+        "?: ").lower().strip("!.? ")
 
     if guess in [first, second, third]:
         print("You've got it!")

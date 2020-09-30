@@ -16,7 +16,7 @@ BASIC_COLOUR_LIST = [
     "Orange",
     "Violet",
     "Pink"
-    ]
+]
 
 # Captures the user's favourite food.
 userFavouriteFood = input("What is your favourite food?: ")
@@ -25,8 +25,7 @@ listCommentsAboutFood = [
     f"I too am a big fan of {userFavouriteFood}",
     f"Wow, in my opinion, {userFavouriteFood} is an odd one, but you do you.",
     f"{userFavouriteFood} is an eccentric choice, but if you like it, I like it as well.",
-    f"Delicious! {userFavouriteFood} is amazing!"
-    ]
+    f"Delicious! {userFavouriteFood} is amazing!"]
 # Prints a random choice from the array.
 print(choice(listCommentsAboutFood))
 
@@ -52,7 +51,7 @@ listCommentsAboutColour = [
     My guess is... {choice(BASIC_COLOUR_LIST)}. Let me see your answer: {userFavouriteColour}.
     Tell me, am I right?
     """
-    ]
+]
 # Prints a random selection of the array.
 print(choice(listCommentsAboutColour))
 
@@ -71,6 +70,6 @@ listCommentsAboutPhrase = [
     f"""
     I knew it, {userFavouriteWord} is your favourite!
     """
-    ]
+]
 # Print random index of the list of comments.
 print(choice(listCommentsAboutPhrase))
