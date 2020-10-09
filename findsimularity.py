@@ -5,20 +5,28 @@ Find who I have the most in common with.
 @author: Randy Zhu
 """
 
+# Type hints
 from typing import Union
 
 
-people = []
+# Create a new blank list called people.
+people: "list[list[Union[str, int]]]" = []
+# Create a new blank list called "Most in common", which is a list of the people who I have the most in common with..
 most_in_common = []
+# A list of my favourites @SFU
 my_favourites: "list[str]" = [
     "Bubble World",
     "Chef Hung",
     "Pizza Hut",
     "Quesada(Cornerstone)",
     "Steve's Poke Bar"]
+
+# Open the file.
 file = open("sfu_best_cmpt120.csv")
 
+# Read the first useless line.
 file.readline()
+
 
 counter = 0
 new_favourites: "list[str]" = []
@@ -38,7 +46,7 @@ for line in file:
             score += 1
     people.append([name, score])
 
-person: "list[list[Union[str, int]]]"
+person: "list[Union[str,int]]"
 for person in people:
     # print(person)
     if most_in_common == []:
@@ -47,8 +55,6 @@ for person in people:
         if most_in_common[-1][1] < person[1]:
             most_in_common.clear()
             most_in_common.append(person)
-        # elif most_in_common[-1][1] == person[1]:
-            # most_in_common.append(person)
         elif most_in_common[-1][1] == person[1]:
             most_in_common.append(person)
 print(most_in_common)
