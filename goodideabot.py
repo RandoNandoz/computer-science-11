@@ -13,14 +13,15 @@ idea = input("Give me your idea: ")
 # nested lists > dictionary lol
 idea_questions = [
     # Make an array of arrays, and the arrays inside this array are like key -
-    # value pairs, with index 0 being the questions, and index 1 being the weight.
+    # value pairs, with index 0 being the questions, and index 1 being the
+    # weight.
     ["Out of 100, how much is this idea worth to you?: ", 5],
     ["Out of 100, how much will this idea matter in 2 days?: ", 1],
     ["Out of 100, how much will this idea matter in 2 weeks?: ", 2],
     ["Out of 100, how much will this idea matter in 2 years?: ", 4],
     ["Out of 100, how much will this idea matter in 20 years?: ", 5],
     ["How large will the impact of your idea be (big/medium/small)?: ", 5]
-    ]
+]
 
 # Initialize the goodness score.
 idea_goodness_score = 0
@@ -29,8 +30,8 @@ worth = input(idea_questions[0][0])
 # The goodness score is the worth, multiplied by the weight of the worth.
 idea_goodness_score += int(worth) * idea_questions[0][1]
 
-# For each question in the slice of indexes one to four, 
-# ask it, and then calculate with its average. 
+# For each question in the slice of indexes one to four,
+# ask it, and then calculate with its average.
 # We take the slice 1 - 4, as there are questions
 # which must be evaluated differently.
 for question in idea_questions[1:4]:
@@ -48,7 +49,7 @@ elif impact.lower().strip("!?. ") == "small":
 # Add the impact to the score.
 idea_goodness_score += impact
 
-# If the user answers all 100s, and they think it is a big impact, tell them to 
+# If the user answers all 100s, and they think it is a big impact, tell them to
 # go for it.
 if idea_goodness_score == 1300:
     print("Go for it, it's the best idea every: ")

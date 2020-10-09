@@ -9,7 +9,7 @@ Comparing two people's favourite movies.
 angelica_favourite_movies = ["Big Hero 6", "Inside Out", "Wall-E"]
 # baymax_favourite_movies = ["Big Hero 6", "Star Wars", "Wall-E"]
 # baymax_favourite_movies = ["a", "b", "c"]
-# baymax_favourite_movies = angelica_favourite_movies
+baymax_favourite_moviesbaymax_favourite_movies = angelica_favourite_movies
 # Make a common interest counter.
 common_interest_counter = 0
 

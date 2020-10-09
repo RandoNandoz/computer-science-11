@@ -13,7 +13,7 @@ questions = [
     "How crispy is the chip out of 5?: ",
     "How would you rate the taste out of 5?: ",
     "Out of 5, how would you rate the packaging?: "
-    ]
+]
 
 # make a variable tracking score
 final_score = 0
@@ -24,6 +24,6 @@ for question in questions:
     rating = int(input(question))
     # the final score is the all the ratings added together
     final_score += rating
-    
+
 # Alas, get the average score by dividing by the number of questions.
 print("You've rated this chip " + str(final_score / len(questions)))

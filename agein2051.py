@@ -7,4 +7,5 @@ Calculate age in 2051.
 CURRENT_YEAR = 2020
 current_age = int(input("How old are you right now?: "))
 
-print("You wil be " + str(2051 - CURRENT_YEAR + current_age) + " years old in 2051!")
+print("You wil be " + str(2051 - CURRENT_YEAR +
+                          current_age) + " years old in 2051!")

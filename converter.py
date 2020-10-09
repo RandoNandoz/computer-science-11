@@ -7,4 +7,4 @@ Convert from lbs to kilos.
 
 pounds = float(input("How many pounds?: "))
 
-print("That's " + str(pounds * 0.45) + "kg." )
+print("That's " + str(pounds * 0.45) + "kg.")

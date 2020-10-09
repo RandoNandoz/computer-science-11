@@ -12,5 +12,5 @@ for i in range(5):
 
 for i in scores:
     score += i
-    
+
 print("Your olympic score is " + str(score / 5) + ".")

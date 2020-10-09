@@ -15,7 +15,7 @@ questions = [
     "How would you rate the environment out of 5?: ",
     "How would you rate the safety out of 5?: ",
     "How would you rate the public transport system out of 5?: "
-    ]
+]
 
 # Initialize score.
 score = 0
@@ -31,4 +31,4 @@ for question in questions:
     print()
 
 # Tell the user their weighted average score.
-print("You have rated " + city + " as " + str(score / (25*len(questions))))
+print("You have rated " + city + " as " + str(score / (25 * len(questions))))

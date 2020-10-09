@@ -11,7 +11,11 @@ TAX = 1.14
 menu = [["burger", 5], ["fries", 3]]
 price = 0
 for item in menu:
-    wants_item = input("Would you like a " + str(item[0]) + " for $" + str(item[1]) + "? (Yes/No): ")
+    wants_item = input("Would you like a " +
+                       str(item[0]) +
+                       " for $" +
+                       str(item[1]) +
+                       "? (Yes/No): ")
     if wants_item.lower().strip("!?. ") == "yes":
         price += item[1]
 print("Your total is $" + str(price * TAX) + ".")

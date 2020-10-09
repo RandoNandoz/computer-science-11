@@ -25,13 +25,18 @@ for data in file:
     datalist = data.strip("\n").split(",")
     # We want to find the best pizza, so 4th column it is!
     answer = datalist[4]
-    
+
     if answer.lower() == "uncle fatih's":
         uncle_fatih_tally += 1
     if answer.lower() == "club ilia":
         club_ilia_tally += 1
 
-print("Uncle Fatih's: ", uncle_fatih_tally, "\n", "Club ilia:", club_ilia_tally)
+print(
+    "Uncle Fatih's: ",
+    uncle_fatih_tally,
+    "\n",
+    "Club ilia:",
+    club_ilia_tally)
 # Make comments about data.
 if club_ilia_tally < 0:
     print("Nobody likes club ilia :( ")
