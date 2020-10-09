@@ -55,6 +55,8 @@ for line in file:
     people.append([name, score])
 file.close()
 
+# Now we need to create a list of original names, iterating through the file again,
+# and makig a list of names
 new_file = open("sfu_best_cmpt120.csv")
 new_file.readline()
 
@@ -94,4 +96,3 @@ for name in names:
         if commoner[0] == names[counter].strip("\n").replace(" ", ""):
             print(names[counter].strip(" "))
     counter += 1
-# Close the file.
