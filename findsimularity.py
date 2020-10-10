@@ -11,7 +11,8 @@ from typing import Union
 
 # Create a new blank list called people.
 people: "list[list[Union[str, int]]]" = []
-# Create a new blank list called "Most in common", which is a list of the people who I have the most in common with..
+# Create a new blank list called "Most in common",
+# which is a list of the people who I have the most in common with..
 most_in_common = []
 # A list of my favourites @SFU
 my_favourites: "list[str]" = [
@@ -20,7 +21,7 @@ my_favourites: "list[str]" = [
     "Pizza Hut",
     "Quesada(Cornerstone)",
     "Steve's Poke Bar"
-    ]
+]
 
 # Open the file.
 file = open("sfu_best_cmpt120.csv")
@@ -32,8 +33,8 @@ file.readline()
 counter = 0
 # Make an empty list of new favourites
 new_favourites: "list[str]" = []
-# For every favourite there is, loop through each index of it.
-for favourite in my_favourites:
+# For every favorite there is, loop through each index of it.
+for favorite in my_favourites:
     # Replace all the newlines, and remove spaces.
     new_favourites.append(my_favourites[counter].strip("\n ").replace(" ", ""))
     counter += 1
@@ -48,15 +49,15 @@ for line in file:
     score = 0
     data = line.strip("\n").replace(" ", "").split(",")
     name = data[1]
-    favourite_item: str
-    for favourite_item in my_favourites:
-        if favourite_item in data:
+    favorite_item: str
+    for favorite_item in my_favourites:
+        if favorite_item in data:
             score += 1
     people.append([name, score])
 file.close()
 
 # Now we need to create a list of original names, iterating through the file again,
-# and makig a list of names
+# and making a list of names
 new_file = open("sfu_best_cmpt120.csv")
 new_file.readline()
 
@@ -75,8 +76,9 @@ for person in people:
     if most_in_common == []:
         most_in_common.append(person)
     # If it is not empty, compare whether the score of the last index in the list
-    # is below the current score. If it is, clear the last, and add the current person with their score,
-    # as the score in the list is below the current person. 
+    # is below the current score. If it is, clear the last,
+    # and add the current person with their score,
+    # as the score in the list is below the current person.
     # This will ensure that the list has a homogenus score.
     else:
         if most_in_common[-1][1] < person[1]:
