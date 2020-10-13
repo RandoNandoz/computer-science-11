@@ -16,10 +16,10 @@ people: "list[list[Union[str, int]]]" = []
 most_in_common = []
 # A list of my favourites @SFU
 my_favourites: "list[str]" = [
-    "Bubble World",
-    "Chef Hung",
-    "Pizza Hut",
-    "Quesada(Cornerstone)",
+    # "Bubble World",
+    # "Chef Hung",
+    # "Pizza Hut",
+    # "Quesada(Cornerstone)",
     "Steve's Poke Bar"
 ]
 
@@ -96,5 +96,6 @@ counter = 0
 for name in names:
     for commoner in most_in_common:
         if commoner[0] == names[counter].strip("\n").replace(" ", ""):
-            print(names[counter].strip(" "))
+            print(names[counter].strip(" ") + ", ", end="")
     counter += 1
+print("Are matches with you at a score of " + str(most_in_common[0][1]))
