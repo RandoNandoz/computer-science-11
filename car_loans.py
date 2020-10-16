@@ -15,7 +15,7 @@ loan_initial = Decimal(
 # If the initial amount of the loan is lesser than zero, tell the user
 # of the error in their ways, and exit the program to chastise them
 if loan_initial <= 0:
-    print("Your initial loan amount cannot be zero or less than.".strip(
+    print("Your initial loan amount cannot be zero or less than zero.".strip(
         "$ ").replace(",", ""))
     sys.exit()
 # Ask the user for the apr of their loan.
@@ -37,12 +37,12 @@ loan_amount = loan_initial * TAX
 
 # the monthly payment periods are the number of years times the 12 months in a month.
 monthly_payment_periods = yearly_payment_period * 12
-"""
-Calculate the monthly payment amount by the formula
-loan amount * (monthly interest * (1 + monthly interest)^months of loan duration)
----------------------------------------------------------------------------------
-                (1 + monthly interest)^months of loan duration - 1
-"""
+
+# Calculate the monthly payment amount by the formula
+# loan amount * (monthly interest * (1 + monthly interest)^months of loan duration)
+# ---------------------------------------------------------------------------------
+#               (1 + monthly interest)^months of loan duration - 1
+
 monthly_payment_amount = (
     loan_amount * (
         mpr * (1 + mpr) ** monthly_payment_periods
@@ -117,4 +117,32 @@ for principle in principles_annually:
     year += 1
 # Print the cumulative interest paid.
 print(f"Total interest paid: ${round(cum_interest, 2)}")
+# endregion
+
+# region Reccommend car
+car_list_file = open("car_listings.csv", "r")
+# Get rid of the first useless line.
+car_list_file.readline()
+
+# Create an empty list of the car data.
+car_data: "list[list[str]]" = []
+
+# For each line in the file, add the line of the car data.
+for line in car_list_file:
+    car_data.append(
+        line.strip("\n ").replace(" ", "").split(",")
+    )
+car_data_clone = car_data
+for line in car_data:
+    new_line = int(line[0])
+    car_data.append()
+# With sorted(), it takes in a list, and has a key value
+# the key is the return value of the function that is valled with the key.
+# by using lambda, we can create a temporary function which just returns the
+# first indice as the key. I tried writing my own sorting thing, it was
+# too hard to be honest.
+car_data = sorted(car_data, key=lambda v: v[0])
+
+for data in car_data:
+    print(data)
 # endregion
