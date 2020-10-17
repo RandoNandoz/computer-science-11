@@ -2,8 +2,18 @@
 Car Loan Program
 Randy Zhu
 """
+# region imports
+# Import higher precision math lib to prevent rounding errors.
 from decimal import Decimal
+# Import the floor function for the binary search.
+from math import floor
+# For the exit function.
 import sys
+# Type hint, dw about this.
+from typing import Any
+# Import the environment variable library, and the path library to check whether there is a cache.
+from os import environ, path
+# endregion
 
 # region Calculate summary for loan
 # Define a tax constant. 12% here in BC.
@@ -119,30 +129,155 @@ for principle in principles_annually:
 print(f"Total interest paid: ${round(cum_interest, 2)}")
 # endregion
 
-# region Reccommend car
+# region Reccommend a car
+
+# Open the car listing file, because we don't need it read - write.
 car_list_file = open("car_listings.csv", "r")
-# Get rid of the first useless line.
-car_list_file.readline()
+# If the cache is built, use the cache.
+if path.exists('.car_cache.csv'):
+    # Tell the user about it.
+    print("Sorted cache built - this run will be fast.")
+    # Close the car listing file.
+    car_list_file.close()
+    # Open up the cache file.
+    car_list_file = open('.car_cache.csv')
+    # Create a dataset list, and a list of strings, which is the imported data.
+    car_dataset = []
+    car_strings = []
+    # Load the cache into memory.
+    print("Loading cache into memory...")
+    for line in car_list_file:
+        car_strings.append(
+            line.strip("\n ").replace(" ", "").split(",")
+        )
+    # Close the file because we are done with the file.
+    car_list_file.close()
+    # Cast the first number of the car strings to ints, as we need to perform comparisons. 
+    for car in car_strings:
+        car[0] = int(car[0])
+        car_dataset.append(car)
+else:
+    # Alert to user that there is no cache, and that it will be slow.
+    print("Cache is not built. This run will be slower, but subsequent runs will be faster.")
+    # Get rid of the first useless line.
+    car_list_file.readline()
+    
+    # Create a string list of car data.
+    car_strings = []
+    # Create an empty list of the car data.
+    car_dataset = []
 
-# Create an empty list of the car data.
-car_data: "list[list[str]]" = []
+    # For each line in the file, add the line of the car data.
+    print("Adding data to memory.")
+    for line in car_list_file:
+        car_strings.append(
+            line.strip("\n ").replace(" ", "").split(",")
+        )
+    # Close the file cuz we're done.
+    car_list_file.close()
+    # We want to cast the first index of the list to an int, so we can
+    # sort the data to execute a binary search to find a price.
+    print("Processing data (part 1/2)")
+    for car in car_strings:
+        for _ in car:
+            car[0] = int(car[0])
+            car_dataset.append(car)
+    # With sorted(), it takes in a list, and has a key value
+    # the key is the return value of the function that is valled with the key.
+    # by using lambda, we can create a temporary function which just returns the
+    # first indice as the key. I tried writing my own sorting thing, it was
+    # too hard to be honest.
+    print("Sorting data (part 2/2)")
+    car_dataset: "list[list[Any]]" = sorted(
+        car_dataset, key=lambda v: v[0])
+    # Warn the user about not killing the app.
+    print("Created cache file .car_cache.csv, building cache... DO NOT Ctrl - C the program. Doing so wil corrupt the cache.")
+    # Create a new file called the cache.
+    cache = open(".car_cache.csv", "x")
+    # Create a write counter, as we need not write a newline with the first write.
+    writes = 0
+    # Log the dataset into the file
+    for items in car_dataset:
+        # If there are zero writes, do not write a newline, and just increment one to the counter.
+        if writes == 0:
+            writes += 1
+        # If it's anything other than 0, write a newline.
+        else:
+            cache.write("\n")
+        counter = 0
+        # For every bit in the dataset:
+        for item in items:
+            # If the counter is lesser than the length of the items, write a comma,
+            # as it is not the last item in the line.
+            if counter < len(items) - 1:
+                cache.write(str(item) + ",")
+            # Otherwise, just write the item to the file, and do not add a comma.
+            else:
+                cache.write(str(item))
+            # Increment the counter per write of word.
+            counter += 1
+    # Tell the user that the cache build is finished.
+    print("Cache built.")
 
-# For each line in the file, add the line of the car data.
-for line in car_list_file:
-    car_data.append(
-        line.strip("\n ").replace(" ", "").split(",")
-    )
-car_data_clone = car_data
-for line in car_data:
-    new_line = int(line[0])
-    car_data.append()
-# With sorted(), it takes in a list, and has a key value
-# the key is the return value of the function that is valled with the key.
-# by using lambda, we can create a temporary function which just returns the
-# first indice as the key. I tried writing my own sorting thing, it was
-# too hard to be honest.
-car_data = sorted(car_data, key=lambda v: v[0])
+# Ask the user about their desired car price.
+user_desired_car_price = int(
+    input("What is your desired car price?: ").strip("$"))
+# Set a search limit, as this file is around 800K lines long, which means without a limit, it will take a long
+# time to give the user an appropriate response.
+search_limit = int(environ.get("SEARCH_LIMIT", 20))
+# Alert the user that the default search limit is set, and tell them how to set it.
+if search_limit == 20:
+    print("Going with default for search limit - 20. You can set a custom search limit with the environment variable SEARCH_LIMIT.")
+# If the limit is invalid, tell them so, and quit.
+elif search_limit <= 0:
+    print("The search limit is lesser than or equal to zero. Invalid limit.")
+    sys.exit()
+# Tell them about the custom search limit.
+else:
+    print("SEARCH_LIMIT set to: " + str(search_limit) + ".")
+# Execute binary search for right price.
+# Create a new list of matches to the price.
+matches = []
+# Create the leftmost column of the search.
+search_left = 0
+# Create the rightmost column of the search, which is for now the the last index of the list.
+search_right = len(car_dataset) - 1
+# While the leftmost search position is lesser than or equal to
+# the rightmost search point, calculate the middle of the search
+# by averaging the left and the right.
+while search_left <= search_right:
+    search_middle = floor((search_left + search_right)/2)
+    # For every item in the dataset, if the item's price is
+    # lesser than the user's desired car price, make the leftmost
+    # search column the middle plus one.
+    for item in car_dataset:
+        if item[0] < user_desired_car_price:
+            search_left = search_middle + 1
+        # If the price is more than the desired car price, move the
+        # right column to the middle search point plus one.
+        elif item[0] > user_desired_car_price:
+            search_right = search_middle + 1
+        # Alas, if the search limit is reached, stop looping.
+        elif len(matches) <= search_limit:
+            break
+        # Else a match is found, because the price is equal to the user's desired car price,
+        # add the item to the list of matches.
+        else:
+            matches.append(item)
 
-for data in car_data:
-    print(data)
+# Ask the user how many matches they want displayed.
+user_wants_times_printed = int(input(
+    f"There are {len(matches)} matches. How many matches would you like to see?: "))
+# If the user's times printed request is greater than the number of matches, just print all the results.
+if user_wants_times_printed > len(matches):
+    print("You have selected to print more than there are cars available. Going to print all results.")
+# If the user want's an invalid case, tell them that it's invalid, and exit.
+elif user_wants_times_printed <= 0:
+    print("You cannot print zero or less than zero matches.")
+    sys.exit()
+# Else, print to the user's request the make, model, year, and milage.
+else:
+    for i in range(user_wants_times_printed):
+        print(
+            f"Car {i + 1} is a {matches[i][1]} {matches[i][6]} {matches[i][7]}, with {matches[i][2]} miles.")
 # endregion
