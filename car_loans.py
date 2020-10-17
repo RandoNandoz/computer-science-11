@@ -247,19 +247,22 @@ search_right = len(car_dataset) - 1
 # by averaging the left and the right.
 while search_left <= search_right:
     search_middle = floor((search_left + search_right)/2)
-    # For every item in the dataset, if the item's price is
-    # lesser than the user's desired car price, make the leftmost
-    # search column the middle plus one.
+    # For every item in the dataset.
+    if len(matches) >= search_limit:
+        break
     for item in car_dataset:
+        # Alas, if the search limit is reached, stop looping.
+        if len(matches) >= search_limit:
+            break
+        # if the item's price is
+        # lesser than the user's desired car price, make the leftmost
+        # search column the middle plus one.
         if item[0] < user_desired_car_price:
             search_left = search_middle + 1
         # If the price is more than the desired car price, move the
         # right column to the middle search point plus one.
         elif item[0] > user_desired_car_price:
             search_right = search_middle + 1
-        # Alas, if the search limit is reached, stop looping.
-        elif len(matches) <= search_limit:
-            break
         # Else a match is found, because the price is equal to the user's desired car price,
         # add the item to the list of matches.
         else:
@@ -271,6 +274,9 @@ user_wants_times_printed = int(input(
 # If the user's times printed request is greater than the number of matches, just print all the results.
 if user_wants_times_printed > len(matches):
     print("You have selected to print more than there are cars available. Going to print all results.")
+    for i in len(matches) - 1:
+        print(
+            f"Car {i + 1} is a {matches[i][1]} {matches[i][6]} {matches[i][7]}, with {matches[i][2]} miles.")
 # If the user want's an invalid case, tell them that it's invalid, and exit.
 elif user_wants_times_printed <= 0:
     print("You cannot print zero or less than zero matches.")
