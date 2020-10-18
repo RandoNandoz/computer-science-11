@@ -229,6 +229,10 @@ while search_left <= search_right:
         # add the item to the list of matches.
         else:
             matches.append(item)
+    # If the entire dataset is looped through, the search fails. Return the set of matches, but not to limit.
+    print(
+        f"Search to {search_limit} results failed due to it being bigger than the cars in the dataset.")
+    break
 
 # Ask the user how many matches they want displayed.
 user_wants_times_printed = int(input(
