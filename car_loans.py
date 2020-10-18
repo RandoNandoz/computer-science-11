@@ -136,7 +136,7 @@ car_list_file = open("car_listings.csv", "r")
 # If the cache is built, use the cache.
 if path.exists('.car_cache.csv'):
     # Tell the user about it.
-    print("Sorted cache built - this run will be fast.")
+    print("Sorted cache built - this run will be faster.")
     # Close the car listing file.
     car_list_file.close()
     # Open up the cache file.
@@ -152,6 +152,7 @@ if path.exists('.car_cache.csv'):
         )
     # Close the file because we are done with the file.
     car_list_file.close()
+    print("Done!")
     # Cast the first number of the car strings to ints, as we need to perform comparisons. 
     for car in car_strings:
         car[0] = int(car[0])
@@ -191,7 +192,7 @@ else:
     car_dataset: "list[list[Any]]" = sorted(
         car_dataset, key=lambda v: v[0])
     # Warn the user about not killing the app.
-    print("Created cache file .car_cache.csv, building cache... DO NOT Ctrl - C the program. Doing so wil corrupt the cache.")
+    print("Created cache file .car_cache.csv, building cache... DO NOT Ctrl-C the program. Doing so will corrupt the cache.")
     # Create a new file called the cache.
     cache = open(".car_cache.csv", "x")
     # Create a write counter, as we need not write a newline with the first write.
@@ -274,7 +275,7 @@ user_wants_times_printed = int(input(
 # If the user's times printed request is greater than the number of matches, just print all the results.
 if user_wants_times_printed > len(matches):
     print("You have selected to print more than there are cars available. Going to print all results.")
-    for i in len(matches) - 1:
+    for i in range(len(matches) - 1):
         print(
             f"Car {i + 1} is a {matches[i][1]} {matches[i][6]} {matches[i][7]}, with {matches[i][2]} miles.")
 # If the user want's an invalid case, tell them that it's invalid, and exit.
