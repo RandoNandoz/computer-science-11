@@ -124,6 +124,7 @@ for principle in principles_annually:
             f"Year {year} balance: ${round(loan_balance_yearly, 2)}", end="\n", sep="")
     year += 1
 # Print the cumulative interest paid.
+print(f"Total payments: ${round(cum_interest + loan_amount, 2)}")
 print(f"Total interest paid: ${round(cum_interest, 2)}")
 # endregion
 
