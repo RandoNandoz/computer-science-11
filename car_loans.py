@@ -10,9 +10,8 @@ from math import floor
 # For the exit function.
 import sys
 # Type hint, dw about this.
-from typing import Any
 # Import the environment variable library, and the path library to check whether there is a cache.
-from os import environ, path
+from os import environ
 # endregion
 
 # region Calculate summary for loan
@@ -133,92 +132,37 @@ print(f"Total interest paid: ${round(cum_interest, 2)}")
 
 # Open the car listing file, because we don't need it read - write.
 car_list_file = open("car_listings.csv", "r")
-# If the cache is built, use the cache.
-if path.exists('.car_cache.csv'):
-    # Tell the user about it.
-    print("Sorted cache built - this run will be faster.")
-    # Close the car listing file.
-    car_list_file.close()
-    # Open up the cache file.
-    car_list_file = open('.car_cache.csv')
-    # Create a dataset list, and a list of strings, which is the imported data.
-    car_dataset = []
-    car_strings = []
-    # Load the cache into memory.
-    print("Loading cache into memory...")
-    for line in car_list_file:
-        car_strings.append(
-            line.strip("\n ").replace(" ", "").split(",")
-        )
-    # Close the file because we are done with the file.
-    car_list_file.close()
-    print("Done!")
-    # Cast the first number of the car strings to ints, as we need to perform comparisons. 
-    for car in car_strings:
+# Get rid of the first useless line.
+car_list_file.readline()
+
+# Create a string list of car data.
+car_strings = []
+# Create an empty list of the car data.
+car_dataset = []
+
+# For each line in the file, add the line of the car data.
+print("Adding data to memory.")
+for line in car_list_file:
+    car_strings.append(
+        line.strip("\n ").replace(" ", "").split(",")
+    )
+# Close the file cuz we're done.
+car_list_file.close()
+# We want to cast the first index of the list to an int, so we can
+# sort the data to execute a binary search to find a price.
+print("Processing data (part 1/2)")
+for car in car_strings:
+    for _ in car:
         car[0] = int(car[0])
         car_dataset.append(car)
-else:
-    # Alert to user that there is no cache, and that it will be slow.
-    print("Cache is not built. This run will be slower, but subsequent runs will be faster.")
-    # Get rid of the first useless line.
-    car_list_file.readline()
-    
-    # Create a string list of car data.
-    car_strings = []
-    # Create an empty list of the car data.
-    car_dataset = []
-
-    # For each line in the file, add the line of the car data.
-    print("Adding data to memory.")
-    for line in car_list_file:
-        car_strings.append(
-            line.strip("\n ").replace(" ", "").split(",")
-        )
-    # Close the file cuz we're done.
-    car_list_file.close()
-    # We want to cast the first index of the list to an int, so we can
-    # sort the data to execute a binary search to find a price.
-    print("Processing data (part 1/2)")
-    for car in car_strings:
-        for _ in car:
-            car[0] = int(car[0])
-            car_dataset.append(car)
-    # With sorted(), it takes in a list, and has a key value
-    # the key is the return value of the function that is valled with the key.
-    # by using lambda, we can create a temporary function which just returns the
-    # first indice as the key. I tried writing my own sorting thing, it was
-    # too hard to be honest.
-    print("Sorting data (part 2/2)")
-    car_dataset: "list[list[Any]]" = sorted(
-        car_dataset, key=lambda v: v[0])
-    # Warn the user about not killing the app.
-    print("Created cache file .car_cache.csv, building cache... DO NOT Ctrl-C the program. Doing so will corrupt the cache.")
-    # Create a new file called the cache.
-    cache = open(".car_cache.csv", "x")
-    # Create a write counter, as we need not write a newline with the first write.
-    writes = 0
-    # Log the dataset into the file
-    for items in car_dataset:
-        # If there are zero writes, do not write a newline, and just increment one to the counter.
-        if writes == 0:
-            writes += 1
-        # If it's anything other than 0, write a newline.
-        else:
-            cache.write("\n")
-        counter = 0
-        # For every bit in the dataset:
-        for item in items:
-            # If the counter is lesser than the length of the items, write a comma,
-            # as it is not the last item in the line.
-            if counter < len(items) - 1:
-                cache.write(str(item) + ",")
-            # Otherwise, just write the item to the file, and do not add a comma.
-            else:
-                cache.write(str(item))
-            # Increment the counter per write of word.
-            counter += 1
-    # Tell the user that the cache build is finished.
-    print("Cache built.")
+# With sorted(), it takes in a list, and has a key value
+# the key is the return value of the function that is valled with the key.
+# by using lambda, we can create a temporary function which just returns the
+# first indice as the key. I tried writing my own sorting thing, it was
+# too hard to be honest.
+print("Sorting data (part 2/2)")
+car_dataset = sorted(
+    car_dataset, key=lambda v: v[0])
 
 # Ask the user about their desired car price.
 user_desired_car_price = int(
