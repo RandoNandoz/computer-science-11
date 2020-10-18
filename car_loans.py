@@ -129,43 +129,55 @@ print(f"Total interest paid: ${round(cum_interest, 2)}")
 
 # region Reccommend a car
 
-# Open the car listing file, because we don't need it read - write.
+# Open the car listing file, r mode because we don't need it read - write.
 car_list_file = open("car_listings.csv", "r")
 # Get rid of the first useless line.
 car_list_file.readline()
 
-# Create a string list of car data.
-car_strings = []
-# Create an empty list of the car data.
+# Create a raw list of car data.
+raw_car_strings = []
+# Create an empty list of soon to be processed car data.
 car_dataset = []
 
 # For each line in the file, add the line of the car data.
 print("Adding data to memory.")
 for line in car_list_file:
-    car_strings.append(
+    raw_car_strings.append(
         line.strip("\n ").replace(" ", "").split(",")
     )
+
 # Close the file cuz we're done.
 car_list_file.close()
 # We want to cast the first index of the list to an int, so we can
 # sort the data to execute a binary search to find a price.
 print("Processing data (part 1/2)")
-for car in car_strings:
+for car in raw_car_strings:
     for _ in car:
         car[0] = int(car[0])
         car_dataset.append(car)
+
 # With sorted(), it takes in a list, and has a key value
-# the key is the return value of the function that is valled with the key.
+# the key is the return value of the function that is called with the key.
 # by using lambda, we can create a temporary function which just returns the
 # first indice as the key. I tried writing my own sorting thing, it was
 # too hard to be honest.
 print("Sorting data (part 2/2)")
+# Resources:
+# https://docs.python.org/3/howto/sorting.html
 car_dataset = sorted(
     car_dataset, key=lambda v: v[0])
 
 # Ask the user about their desired car price.
 user_desired_car_price = int(
-    input("What is your desired car price?: ").strip("$"))
+    input(f"What is your desired car price? The lowest price in the list is ${car_dataset[0][0]}, and the highest is ${car_dataset[-1][0]}: ").strip("$"))
+# If the user's desired car price is less than the lowest number on the dataset, tell them that it's invalid.
+if user_desired_car_price < car_dataset[0][0]:
+    print("Your price is too low.")
+    sys.exit()
+# If the user's desired car price is higher than the highest number on the dataset, tell them that it's invalid.
+elif user_desired_car_price > car_dataset[-1][0]:
+    print("Your price is too high.")
+    sys.exit()
 # Set a search limit, as this file is around 800K lines long, which means without a limit, it will take a long
 # time to give the user an appropriate response.
 search_limit = int(environ.get("SEARCH_LIMIT", 20))
@@ -181,6 +193,10 @@ else:
     print("SEARCH_LIMIT set to: " + str(search_limit) + ".")
 # Execute binary search for right price.
 # Create a new list of matches to the price.
+# Resources:
+# https://en.wikipedia.org/wiki/Binary_search_algorithm
+# https://www.khanacademy.org/computing/computer-science/algorithms/binary-search/a/binary-search
+# https://www.youtube.com/watch?v=P3YID7liBug
 matches = []
 # Create the leftmost column of the search.
 search_left = 0
@@ -190,6 +206,7 @@ search_right = len(car_dataset) - 1
 # the rightmost search point, calculate the middle of the search
 # by averaging the left and the right.
 while search_left <= search_right:
+    print("Searching for cars...")
     search_middle = floor((search_left + search_right)/2)
     # For every item in the dataset.
     if len(matches) >= search_limit:
