@@ -9,8 +9,7 @@ from decimal import Decimal
 from math import floor
 # For the exit function.
 import sys
-# Type hint, dw about this.
-# Import the environment variable library, and the path library to check whether there is a cache.
+# Import the environment variable function
 from os import environ
 # endregion
 
