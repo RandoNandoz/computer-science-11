@@ -118,7 +118,7 @@ print(f"Total payments: ${round(cum_interest + loan_amount, 2)}")
 print(f"Total interest paid: ${round(cum_interest, 2)}")
 # endregion
 
-# region Reccommend a car
+# region recommend a car
 
 # # Open the car listing file, r mode because we don't need it read - write.
 # car_list_file = open("car_listings.csv", "r")
